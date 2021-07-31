@@ -1,0 +1,21 @@
+<%- include("./partials/headerDashboard.ejs") %>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800"><b>Add Funds</b></h1>
+                    <div style=" margin-top: 95px;">
+                        <center><span><a id="usdtBtn" value="usdt"><img style="width: 70px;" src="/img2/usdt.png" alt=""></a>&nbsp;&nbsp;&nbsp;<a id="busdBtn" name="busd"><img style="width: 70px;" src="/img2/busd.png" alt=""></a>&nbsp;&nbsp;&nbsp;<a id="usdcBtn" name="usdc"><img style="width: 70px;" src="/img2/usdc.png" alt=""></a></span></center>
+                        <form action="/dashboard/addfunds" method="POST">
+                        <center><input name="amount" style="margin-top: 40px; text-align: center; outline-color: #3498db;" type="text" placeholder="Amount">&nbsp;<input style="width: 43px; outline-color: #3498db;" type="text" id="addFundsP" name="crypto"></center>
+                        <center><button style="width: 132px; font-size: 12px;" class="general-btn">Add Funds</button></center>
+                        </form>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+<%- include("./partials/footerDashboard.ejs") %>

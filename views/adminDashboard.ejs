@@ -1,0 +1,84 @@
+<%- include("./partials/headerDashboard.ejs") %>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800"><b>All Transactions</b></h1>
+        <br>
+        <center>
+            <p id="pTrans"></p>
+        </center>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">All</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>User</th>
+                                <th>Crypto</th>
+                                <!-- <th>Position</th> -->
+                                <!-- <th>Office</th> -->
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <!-- <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Office</th>
+                                <th>Age</th>
+                                <th>Start date</th>
+                                <th>Salary</th>
+                            </tr>
+                        </tfoot> -->
+                        <script> 
+                            let pt = document.getElementById('pTrans');
+                            let tbody = document.getElementById('firstR')
+                            if(tbody !== ""){
+                                pt.innerHTML = ""
+                            } else {
+                                pt.innerHTML = "All your transactions will be displayed here."
+                            }
+                        </script>
+                        
+
+                        <% fund.forEach(function(data){ %>
+
+                        
+                        <tbody>
+                            <tr>
+                                <td id="firstR"><%=data.crypto%></td>
+                                <td id="firstR"><%=data.author.username %></td>
+                                <td id="firstR"><%=data.crypto%></td>
+                                <!-- <td>System Architect</td> -->
+                                <!-- <td>Edinburgh</td> -->
+                                <td><%=data.amount%></td>
+                                <td><%=data.created.toDateString()%></td>
+                                <td>Pending</td>
+                                <td><a class="btn btn-success btn-circle btn-sm">
+                                        <i class="fas fa-check"></i>
+                                    </a>&nbsp;&nbsp;
+                                    <a class="btn btn-danger btn-circle btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                    <%})%>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->                
+<%- include("./partials/footerDashboard.ejs") %>

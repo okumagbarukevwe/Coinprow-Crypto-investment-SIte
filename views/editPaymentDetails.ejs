@@ -1,0 +1,44 @@
+<%- include("./partials/headerDashboard.ejs") %>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800"><b>Payment Details</b></h1>
+                    <br>
+                    <form action="/dashboard/paymentdetails/<%= user._id%>?_method=PUT" method="POST">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card mb-4 py-3 border-left-success">
+                                <div class="card-body">
+                                    <center><img style="width: 70px;" src="/img2/usdt.png"></center>
+                                    <center><input style="margin-top: 15px; width: 400px; text-align: center; outline-color: #3498db;" type="text" name="user[usdt]" value="<%= user.usdtAdd %>"></center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card mb-4 py-3 border-left-warning">
+                                <div class="card-body">
+                                    <center><img style="width: 70px;" src="/img2/busd.png"></center>
+                                    <center><input style="margin-top: 15px; width: 400px; text-align: center; outline-color: #3498db;" type="text" name="user[busd]" value="<%= user.busdAdd %>"></center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card mb-4 py-3 border-left-info">
+                                <div class="card-body">
+                                    <center><img style="width: 70px;" src="/img2/usdc.png"></center>
+                                    <center><input style="margin-top: 15px; width: 350px; text-align: center; outline-color: #3498db;" type="text" name="user[usdc]" value="<%= user.usdcAdd %>"></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <center><button style="width: 132px; margin-top: 30px; margin-bottom: 30px; font-size: 12px;" class="general-btn"><a href="">Save</a></button></center>
+                    </form>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+<%- include("./partials/footerDashboard.ejs") %>
