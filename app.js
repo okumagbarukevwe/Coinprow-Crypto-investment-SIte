@@ -15,7 +15,7 @@ const authRoutes = require('./routes/auth')
 
 
 
-mongoose.connect('mongodb://localhost/coinPay');
+mongoose.connect('mongodb+srv://rukevwe:08028345728@cluster0.nlgsi.mongodb.net/coinprow?retryWrites=true&w=majority');
 
 
 const app = express();
