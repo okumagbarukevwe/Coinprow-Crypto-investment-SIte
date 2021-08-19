@@ -3,7 +3,6 @@
 </script>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <p><%= currentUser.id %></p>
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800"><b>Transaction History</b></h1>
                     <br>
@@ -19,11 +18,12 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>Date</th>
+                                            <th>Operation</th>
                                             <th>Crypto</th>
                                             <!-- <th>Position</th> -->
                                             <!-- <th>Office</th> -->
                                             <th>Amount</th>
-                                            <th>Date</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -49,18 +49,20 @@
                                     
 
                                     <% fund.forEach(function(data){ %>
-
-                                    
                                     <tbody>
+                                        
+                                        
                                         <tr>
+                                            <td><%=data.created.toDateString()%></td>
+                                            <td><a href="/dashboard/operation/<%= data._id %>"><%=data.operation%></a></td>
                                             <td id="firstR"><%=data.crypto%></td>
                                             <td><%=data.amount%></td>
-                                            <td><%=data.created%></td>
-                                            <td><%=data.author.id%></td>
-                                            <td><%=currentUser.id%></td>
                                             <td>Pending</td>
                                         </tr>
-                                <%})%>
+                                    </div>
+                                    <%})%>
+                                    </tbody>
+                                    </a>
                                 </table>
                             </div>
                         </div>

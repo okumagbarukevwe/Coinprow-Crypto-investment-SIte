@@ -7,7 +7,27 @@ var userSchema = new mongoose.Schema({
     email: String,
     usdtAdd : String,
     busdAdd: String,
-    usdcAdd: String
+    usdcAdd: String,
+    accBalance: Number,
+    usdcDetails: {
+        addedAmount: Number,
+        referral: Number,
+        withdrawal: Number,
+        pending: Number
+    },
+    busdDetails: {
+        addedAmount: Number,
+        referral: Number,
+        withdrawal: Number,
+        pending: Number
+    },
+    usdtDetails: {
+        addedAmount: Number,
+        referral: Number,
+        withdrawal: Number,
+        pending: Number
+    }
+    
 });
 
 userSchema.plugin(passportLocalMongoose);

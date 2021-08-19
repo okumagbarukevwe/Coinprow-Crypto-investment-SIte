@@ -1,9 +1,12 @@
 var mongoose = require('mongoose');
+let date = new Date();
 
 var addFundSchema = new mongoose.Schema({
     amount: Number,
     crypto: String,
-    created: {type: Date, default: Date.now},
+    operation: String,
+    coinName: String,
+    created: {type: Date, default: date.toLocaleString('en-US')},
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

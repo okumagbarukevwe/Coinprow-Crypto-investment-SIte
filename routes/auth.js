@@ -9,8 +9,27 @@ router.get('/register', function(req, res){
 })
 
 let usdtAddress = "lladoqid21ewd98123io2esq12919123243"
-    let busdAddress = "lladoqid21ewd98123io2esq12919123243"
-    let usdcAddress = "lladoqid21ewd98123io2esq12919123243"
+let busdAddress = "lladoqid21ewd98123io2esq12919123243"
+let usdcAddress = "lladoqid21ewd98123io2esq12919123243"
+let accBalance= 0.0000;
+let usdcDetails = {
+        addedAmount: 0.0000,
+        referral: 0.0000,
+        withdrawal: 0.0000,
+        pending: 0.0000
+    };
+let busdDetails = {
+        addedAmount: 0.0000,
+        referral: 0.0000,
+        withdrawal: 0.0000,
+        pending: 0.0000
+    };
+let usdtDetails = {
+        addedAmount: 0.0000,
+        referral: 0.0000,
+        withdrawal: 0.0000,
+        pending: 0.0000
+    };
 
 router.post('/register', function(req, res){
     req.body.username
@@ -19,12 +38,20 @@ router.post('/register', function(req, res){
     usdtAddress
     busdAddress
     usdcAddress
+    accBalance
+    usdcDetails
+    busdDetails
+    usdtDetails
     
     let newUser = new User({ username: req.body.username, 
                              email: req.body.email,
                              usdtAdd: usdtAddress,
                              busdAdd: busdAddress,
-                             usdcAdd: usdcAddress})
+                             usdcAdd: usdcAddress,
+                             accBal: accBalance,
+                             usdcDet: usdcDetails,
+                             busdDet: busdDetails,
+                             usdtDet: usdtDetails})
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             console.log(err);

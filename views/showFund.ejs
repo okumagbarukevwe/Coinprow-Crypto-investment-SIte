@@ -1,0 +1,56 @@
+<%- include("./partials/headerDashboard.ejs") %>
+<style>
+body {color : black;}
+
+</style>
+              <!-- Begin Page Content -->
+              <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800"><b>Operation - Addfunds</b></h1>
+                <div style=" margin-top: 95px;">
+                  <center>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        State
+                      </div>
+                      <div class="col-lg-3">
+                        Prepared
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        Date
+                      </div>
+                      <div class="col-lg-3">
+                        <%= fund.created %>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        Payment System
+                      </div>
+                      <div class="col-lg-3">
+                        <%= fund.coinName %>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        Amount
+                      </div>
+                      <div class="col-lg-3">
+                        <%= fund.amount %> <%= fund.crypto %>
+                      </div>
+                    </div>
+                    <a href="../../dashboard/addfunds"><center><button class="general-btn">Pay through the merchant</button></center></a>
+                  </center>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        
+        <!-- End of Main Content -->
+<%- include("./partials/footerDashboard.ejs") %>

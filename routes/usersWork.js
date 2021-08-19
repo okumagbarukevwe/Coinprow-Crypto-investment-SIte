@@ -42,9 +42,25 @@ router.get('/dashboard/operationhistory', isLoggedIn, function(req, res){
     addFund.find({}, function(err, data){
         if(err){
             console.log(err);
-        } else {
-            res.render('operationHistory', {title: 'Operation History | ', fund: data})
-            console.log(data)
+        } else{
+            let showTransactions = []
+            console.log('start')
+            data.forEach(function(d){
+                let authId = d.author.id
+                let reqId =  req.user.id
+                // d.author.id == req.user._id
+                if((reqId) == authId){
+                    showTransactions.push(d)
+                }
+            })
+            // data.forEach(function(d){
+            //     if(d.author.id = req.user.id){
+            //         console.log(d)
+            //     }
+            // })
+            res.render('operationHistory', {title: 'Operation History | ', fund: showTransactions})
+            // console.log(showTransactions)
+            console.log(req.user.id)
         }
     })
     
@@ -59,46 +75,64 @@ addFund.find({}, function(err, data){
 })
 
 
+let operationAdd = "Add Fund";
+
 router.post('/dashboard/addfunds', isLoggedIn, function(req, res){
     // console.log(req.body.crypto);
     // console.log(req.body.amount);
     // console.log(req.user);
     var crypto = req.body.crypto
+    if (crypto = 'busd'){
+        var coinName = "Binance USD"
+    } else if (crypto = 'usdc'){
+        var coinName = "Usd Coin"
+    } else if (crypto = 'usdt'){
+        var coinName = "Tether"
+    }
+    var operation = operationAdd
     var amount = req.body.amount
     var author = {
         id: req.user._id,
         username: req.user.username
     }
-    var newFund = {crypto: crypto, amount: amount, author: author}
+    var newFund = {crypto: crypto, operation: operationAdd, coinName: coinName, amount: amount, author: author}
     addFund.create(newFund, function(err, newFund){
         if(err){
             console.log(err);
             return res.redirect('/dashboard/addfunds', {title: 'Add funds | '});
         } else if (req.body.crypto === 'Usdt'){
             // console.log(newFund)
-            return res.redirect('/dashboard/addfunds/btc')
+            return res.redirect('/dashboard/addfunds/usdt')
         }  else if (req.body.crypto === 'Busd'){
             // console.log(newFund)
-            return res.redirect('/dashboard/addfunds/eth')
+            return res.redirect('/dashboard/addfunds/busd')
         }else if (req.body.crypto === 'Usdc'){
             // console.log(newFund)
-            return res.redirect('/dashboard/addfunds/Pm')
+            return res.redirect('/dashboard/addfunds/usdc')
         }
     }); 
 });
 
+router.get('/dashboard/operation/:id', isLoggedIn, function(req, res){
+    addFund.findById(req.params.id, function(err, foundFund){
+        if(err){
+            res.redirect('../../dashboard/operationhistory')
+        }else {
+            res.render('showFund', {fund: foundFund, title: 'showFund'})
+        }
+    })
+})
 
-
-router.get('/dashboard/addfunds/btc', isLoggedIn, function(req, res){
-    res.render('btcFunds', {title: 'Payment Details | '})
+router.get('/dashboard/addfunds/usdt', isLoggedIn, function(req, res){
+    res.render('usdtFunds', {title: 'Add Funds | '})
 });
 
-router.get('/dashboard/addfunds/eth', isLoggedIn, function(req, res){
-    res.render('ethFunds', {title: 'Payment Details | '})
+router.get('/dashboard/addfunds/busd', isLoggedIn, function(req, res){
+    res.render('busdFunds', {title: 'Add Funds | '})
 });
 
-router.get('/dashboard/addfunds/pm', isLoggedIn, function(req, res){
-    res.render('pmFunds', {title: 'Payment Details | '})
+router.get('/dashboard/addfunds/usdc', isLoggedIn, function(req, res){
+    res.render('usdcFunds', {title: 'Add Funds | '})
 });
 
 // router.get('/dashboard/paymentdetails/:id', isLoggedIn, function(req, res){
