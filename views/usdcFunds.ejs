@@ -1,64 +1,111 @@
 <%- include("./partials/headerDashboard.ejs") %>
-<!-- Begin Page Content -->
-<div class="container-fluid">
+<style>
+  .container-fluid div {color: black;}
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><b>Add Funds</b></h1>
-    <div style=" margin-top: 95px;">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">BEP2</a>
-            </li>
-            <li class="nav-item" role="presentation">
-              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">BEP20</a>
-            </li>
-            <li class="nav-item" role="presentation">
-              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">TRC20</a>
-            </li>
-          </ul>
-          <br>
-          <br>
-          <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <p>USDC Deposit Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button style="border-radius: 15px; background-color: #8e8e8d; border-style: none; width: 70px;">Copy</button></p> 
-                <p></p>
-                <p>Direct Deposit</p>
-                <br>
-                <p>Send only USDT to this deposit address</p>
-                <br>
-                <br>
-                <p>*Sending coins or tokens other than USDT to this address may result in the loss of your deposit.</p>
-                <p>*Coins will be deposited after 15 network confirmations.</p>
+  .tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800"><b>Add Funds</b></h1>
+                    <div style=" margin-top: 95px;">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">BEP2</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">BEP20</a>
+                            </li>
+                          </ul>
+                          <br>
+                          <br>
+                          <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                <p>USDC Deposit Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button style="border-radius: 15px; background-color: #8e8e8d; border-style: none; width: 70px;" onclick="copyToClipboard('#p1')">Copy</button></p> 
+                                <p style="color: #a3a39d" value="bnb1jy374cd4jw8z0yv9xvfqp5hdkz7mh99358xae0" id="p1">bnb1jy374cd4jw8z0yv9xvfqp5hdkz7mh99358xae0</p>
+                                <p>Direct Deposit</p>
+                                <br>
+                                <p>Send only USDC to this deposit address</p>
+                                <br>
+                                <br>
+                                <p>*The deposit address doesn't require a memo.</p>
+                                <p>*Send coins compatible with the respective deposit address. Sending any other coin will result to loss of coin on the blockchain</p>
+                            </div>
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                <p>USDC Deposit Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button style="border-radius: 15px; background-color: #8e8e8d; border-style: none; width: 70px;" onclick="copyToClipboard('#p2')">Copy</button></p> 
+                                <p style="color: #a3a39d" value="0xdbAB9206294E5A2469D4E49d8DeBCC3bFD8A27A2" id="p2">0xdbAB9206294E5A2469D4E49d8DeBCC3bFD8A27A2</p>
+                                <p>Direct Deposit</p>
+                                <br>
+                                <p>Send only USDC to this deposit address</p>
+                                <br>
+                                <br>
+                                <p>*The deposit address doesn't require a memo.</p>
+                                <p>*Send coins compatible with the respective deposit address. Sending any other coin will result to loss of coin on the blockchain</p>
+                            </div>
+                            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                <p>USDC Deposit Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button style="border-radius: 15px; background-color: #8e8e8d; border-style: none; width: 70px;" onclick="copyToClipboard('#p3')">Copy</button></p> 
+                                <p style="color: #a3a39d" value="TPfqgofEbovWeQGMxsevaATyVW4wwE3YG4" id="p3">TPfqgofEbovWeQGMxsevaATyVW4wwE3YG4</p>
+                                <p>Direct Deposit</p>
+                                <br>
+                                <p>Send only USDC to this deposit address</p>
+                                <br>
+                                <br>
+                                <p>*The deposit address doesn't require a memo.</p>
+                                <p>*Send coins compatible with the respective deposit address. Sending any other coin will result to loss of coin on the blockchain</p>
+                            </div>
+                          </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
             </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <p>USDC Deposit Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button style="border-radius: 15px; background-color: #8e8e8d; border-style: none; width: 70px;">Copy</button></p> 
-                <p></p>
-                <p>Direct Deposit</p>
-                <br>
-                <p>Send only USDT to this deposit address</p>
-                <br>
-                <br>
-                <p>*Sending coins or tokens other than USDT to this address may result in the loss of your deposit.</p>
-                <p>*Coins will be deposited after 15 network confirmations.</p>
-            </div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                <p>USDC Deposit Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button style="border-radius: 15px; background-color: #8e8e8d; border-style: none; width: 70px;">Copy</button></p> 
-                <p></p>
-                <p>Direct Deposit</p>
-                <br>
-                <p>Send only USDT to this deposit address</p>
-                <br>
-                <br>
-                <p>*Sending coins or tokens other than USDT to this address may result in the loss of your deposit.</p>
-                <p>*Coins will be deposited after 15 network confirmations.</p>
-            </div>
-          </div>
-    </div>
-
-</div>
-<!-- /.container-fluid -->
-
-</div>
-
-<!-- End of Main Content -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <!-- End of Main Content -->
+            <script>
+                  function copyToClipboard(element) {
+                        var $temp = $("<input>");
+                        $("body").append($temp);
+                        $temp.val($(element).text()).select();
+                        document.execCommand("copy");
+                        $temp.remove();
+                      }
+            </script>
 <%- include("./partials/footerDashboard.ejs") %>
