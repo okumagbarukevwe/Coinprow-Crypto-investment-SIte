@@ -389,6 +389,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.5s;
   color: #3498db;
   border: 2px solid #3498db;
+  margin-bottom: 15px;
 }
 
 #hero .btn-get-started:hover {
@@ -472,6 +473,12 @@ section {
   overflow: hidden;
 }
 
+section {
+  margin-top: 20px;
+  padding: 0px 0;
+  overflow: hidden;
+}
+
 .section-bg {
   background-color: #f7fbfe;
 }
@@ -513,7 +520,7 @@ section {
 # Clients
 --------------------------------------------------------------*/
 .clients {
-  background: #f3f9fd;
+  /* background: #f3f9fd; */
   padding: 10px 0;
   text-align: center;
 }

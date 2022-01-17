@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const User = require('../models/user');
+const middleware = require('../middleware');
+const flash = require('connect-flash');
 
 //Show signup form
 router.get('/register', function(req, res){
@@ -31,38 +33,30 @@ let usdtDetails = {
         pending: 0.0000
     };
 
-router.post('/register', function(req, res){
-    req.body.username
-    req.body.password
-    req.body.email
-    usdtAddress
-    busdAddress
-    usdcAddress
-    accBalance
-    usdcDetails
-    busdDetails
-    usdtDetails
-    
-    let newUser = new User({ username: req.body.username, 
-                             email: req.body.email,
-                             usdtAdd: usdtAddress,
-                             busdAdd: busdAddress,
-                             usdcAdd: usdcAddress,
-                             accBal: accBalance,
-                             usdcDet: usdcDetails,
-                             busdDet: busdDetails,
-                             usdtDet: usdtDetails})
-    User.register(newUser, req.body.password, function(err, user){
-        if(err){
-            console.log(err);
-            return res.render('register', {title: 'Register | '});
-        }
-        passport.authenticate('local')(req, res, function(){
-            res.redirect('dashboard');
+    router.post('/register', function(req, res){
+        req.body.username
+        req.body.password
+        req.body.email
+        usdtAddress
+        busdAddress
+        usdcAddress
+        
+        let newUser = new User({ username: req.body.username, 
+                                 email: req.body.email,
+                                 usdtAdd: usdtAddress,
+                                 busdAdd: busdAddress,
+                                 usdcAdd: usdcAddress})
+        User.register(newUser, req.body.password, function(err, user){
+            if(err){
+                console.log(err);
+                return res.render('register', {title: 'Register | '});
+            }
+            passport.authenticate('local')(req, res, function(){
+                res.redirect('dashboard');
+            });
         });
     });
-});
-
+    
 
 
 
@@ -82,16 +76,9 @@ router.post('/login',passport.authenticate('local', {
 //LOGOUT
 router.get('/logout', function(req, res){
     req.logout();
+    req.flash('success', 'Logged you out successfully')
     res.redirect('/')
 });
 
-
-
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    };
-    res.redirect('/login');
-};
 
 module.exports = router;

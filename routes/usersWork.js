@@ -5,6 +5,7 @@ const addFund = require('../models/addFunds');
 const passport = require('passport');
 const User = require('../models/user');
 const methodOverride = require('method-override');
+const flash = require('connect-flash');
 
 app.use(methodOverride('_method'));
 
@@ -82,12 +83,17 @@ router.post('/dashboard/addfunds', isLoggedIn, function(req, res){
     // console.log(req.body.amount);
     // console.log(req.user);
     var crypto = req.body.crypto
-    if (crypto = 'busd'){
-        var coinName = "Binance USD"
-    } else if (crypto = 'usdc'){
-        var coinName = "Usd Coin"
-    } else if (crypto = 'usdt'){
-        var coinName = "Tether"
+    console.log(crypto)
+    if (crypto == 'Usdc'){
+        var coinName = "Usd Coin";
+        console.log('usdc is it');
+        
+    } else if (crypto == 'Busd'){
+        var coinName = "Binance USD";
+        console.log('busd is it')
+    } else if (crypto == 'Usdt'){
+        var coinName = "Tether";
+        console.log('usdt is it')
     }
     var operation = operationAdd
     var amount = req.body.amount
@@ -111,7 +117,10 @@ router.post('/dashboard/addfunds', isLoggedIn, function(req, res){
             return res.redirect('/dashboard/addfunds/usdc')
         }
     }); 
+    console.log(newFund)
 });
+
+
 
 router.get('/dashboard/operation/:id', isLoggedIn, function(req, res){
     addFund.findById(req.params.id, function(err, foundFund){
@@ -121,6 +130,10 @@ router.get('/dashboard/operation/:id', isLoggedIn, function(req, res){
             res.render('showFund', {fund: foundFund, title: 'showFund'})
         }
     })
+})
+
+router.delete('/dashboard/operation/:id', isLoggedIn, function(req, res){
+    res.send('you have reached the delete route')
 })
 
 router.get('/dashboard/addfunds/usdt', isLoggedIn, function(req, res){
@@ -171,6 +184,7 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     };
+    req.flash('error', 'Please Login First');
     res.redirect('/login');
 };
 

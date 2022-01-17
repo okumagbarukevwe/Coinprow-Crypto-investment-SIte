@@ -45,7 +45,8 @@ body {color : black;}
                         <%= fund.amount %> <%= fund.crypto %>
                       </div>
                     </div>
-                    <a href="../../dashboard/addfunds"><center><button class="general-btn">Pay through the merchant</button></center></a>
+                    <form action="/dashboard/operation/<%=fund._id%>?_method=DELETE" method="POST"><center><button class="general-btn">Cancel</button></center></form>
+                    <a href="../../dashboard/addfunds/<%= fund.crypto %>"><center><button class="general-btn">Pay through the merchant</button></center></a>
                   </center>
             </div>
             <!-- /.container-fluid -->
