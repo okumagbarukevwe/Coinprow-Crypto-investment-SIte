@@ -78,6 +78,8 @@ function isLoggedIn(req, res, next){
 //     console.log('Server has started');
 // });
 
+
+
 app.listen('3500', function(){
     console.log('server has started')
 })
