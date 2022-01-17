@@ -74,7 +74,7 @@ function isLoggedIn(req, res, next){
 };
 
 
-app.listen(process.env.PORT, function(){
+app.listen(process.env.PORT || 3500, function(){
     console.log('Server has started');
 });
 
