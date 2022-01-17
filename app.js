@@ -14,7 +14,7 @@ const indexRoutes = require('./routes/index');
 const userWorksRoutes = require('./routes/usersWork');
 const authRoutes = require('./routes/auth')
 
-// mongoose.connect('mongodb://eugene-anderson:08028345728@cluster0-shard-00-00.v54ln.mongodb.net:27017,cluster0-shard-00-01.v54ln.mongodb.net:27017,cluster0-shard-00-02.v54ln.mongodb.net:27017/coinProw?ssl=true&replicaSet=atlas-nm5eet-shard-0&authSource=admin&retryWrites=true&w=majority');
+mongoose.connect('mongodb://eugene-anderson:08028345728@cluster0-shard-00-00.v54ln.mongodb.net:27017,cluster0-shard-00-01.v54ln.mongodb.net:27017,cluster0-shard-00-02.v54ln.mongodb.net:27017/coinProw?ssl=true&replicaSet=atlas-nm5eet-shard-0&authSource=admin&retryWrites=true&w=majority');
 // mongoose.connect('mongodb://localhost/coinPay');
 
 const app = express();
