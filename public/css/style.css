@@ -479,6 +479,10 @@ section {
   overflow: hidden;
 }
 
+.sectionContact{
+  padding: 100px 0;
+}
+
 .section-bg {
   background-color: #f7fbfe;
 }
@@ -648,6 +652,7 @@ section {
 }
 
 .counts .content .count-box span {
+  padding-right: 70px;
   font-size: 36px;
   line-height: 30px;
   display: block;

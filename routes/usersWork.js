@@ -84,7 +84,11 @@ router.post('/dashboard/addfunds', isLoggedIn, function(req, res){
     // console.log(req.user);
     var crypto = req.body.crypto
     console.log(crypto)
-    if (crypto == 'Usdc'){
+    if (crypto == 'Btc'){
+        var coinName = "Bitcoin";
+        console.log('usdc is it');
+        
+    } else if (crypto == 'Usdc'){
         var coinName = "Usd Coin";
         console.log('usdc is it');
         
@@ -106,6 +110,9 @@ router.post('/dashboard/addfunds', isLoggedIn, function(req, res){
         if(err){
             console.log(err);
             return res.redirect('/dashboard/addfunds', {title: 'Add funds | '});
+        } else if (req.body.crypto === 'Btc'){
+            // console.log(newFund)
+            return res.redirect('/dashboard/addfunds/btc')
         } else if (req.body.crypto === 'Usdt'){
             // console.log(newFund)
             return res.redirect('/dashboard/addfunds/usdt')
@@ -135,6 +142,10 @@ router.get('/dashboard/operation/:id', isLoggedIn, function(req, res){
 router.delete('/dashboard/operation/:id', isLoggedIn, function(req, res){
     res.send('you have reached the delete route')
 })
+
+router.get('/dashboard/addfunds/btc', isLoggedIn, function(req, res){
+    res.render('btcFunds', {title: 'Add Funds | '})
+});
 
 router.get('/dashboard/addfunds/usdt', isLoggedIn, function(req, res){
     res.render('usdtFunds', {title: 'Add Funds | '})

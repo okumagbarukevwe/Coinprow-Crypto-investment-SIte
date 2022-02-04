@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title><%= title %>CoinProw</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/icon.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="/vendor/venobox/venobox.css" rel="stylesheet">
+  <!-- <link href="/vendor/aos/aos.css" rel="stylesheet"> -->
+
+  <!-- Template Main CSS File -->
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/login.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo mr-auto">
+        <h1 class="text-light"><a href="/"><span><img src="/img/logo-blue.png" alt="coinprow"></span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/howItWorks">How It works</a></li>
+          <li><a href="/affilates">Affilates</a></li>
+          <li><a href="/payouts">Payouts</a></li>
+          <li><a href="/contact">Contact</a></li>
+      <%  if(!currentUser){ %>
+          <li><a href="/login"><b>Login</b></a></li>
+          <li class="get-started"><a href="/register">Get Started</a></li>
+      <% } else { %>
+          <li><a href="/dashboard"><b><%= currentUser.username.toUpperCase()%></b></a></li>
+          <li class="get-started"><a href="/logout">Log out</a></li>
+      <% } %>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+    
+  </header><!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    
+    <br>
+    <br>
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact sectionContact">
+        <div class="container">
+          <% if (error && error.length > 0) { %>
+            <div class="alert alert-danger" role="alert">
+              <%= error %>
+            </div>
+          <%  } %>
+          <% if (success && success.length > 0) { %>
+            <div class="alert alert-success" role="alert">
+              <%= success %>
+            </div>
+          <%  } %>
