@@ -7,7 +7,7 @@ const User = require('../models/user');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
 
-app.use(methodOverride('_method'));
+router.use(methodOverride('_method'));
 
 router.get('/dashboard', isLoggedIn, function(req, res){
     if(req.user.username === 'admin'){
@@ -16,6 +16,20 @@ router.get('/dashboard', isLoggedIn, function(req, res){
                 console.log(err);
             } else {
                 res.render('adminDashboard', {title: 'Transactions | ', fund: data})
+            }
+        })
+    } else {
+        res.render('dashboard', {title: 'Dashboard | '})
+    }
+});
+
+router.get('/dashboard/adminOperation/:id', isLoggedIn, function(req, res){
+    if(req.user.username === 'admin'){
+        addFund.findById(req.params.id, function(err, foundFund){
+            if(err){
+                res.render('adminDashboard')
+            }else {
+                res.render('showFundAdmin', {fund: foundFund, title: 'showFund'})
             }
         })
     } else {
@@ -186,8 +200,9 @@ router.get('/dashboard/paymentdetails/:id/edit', isLoggedIn, function(req, res){
 })
 
 //UPDATE USER PAYMENTS DETAILS
-router.put('/dashboard/paymentDetails/:id', isLoggedIn, function(req, res){
-    res.send('UPDATE ROUTE');
+router.put('/dashboard/paymentdetails/:id', isLoggedIn, function(req, res){
+
+    res.send('hello')
 });
 
 
