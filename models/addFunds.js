@@ -6,6 +6,7 @@ var addFundSchema = new mongoose.Schema({
     crypto: String,
     operation: String,
     coinName: String,
+    status: String,
     created: {type: Date, default: date.toLocaleString('en-US')},
     author: {
         id: {

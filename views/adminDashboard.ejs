@@ -20,6 +20,7 @@
                                 <th>S/N</th>
                                 <th>User</th>
                                 <th>Crypto</th>
+                                <th>Operation</th>
                                 <!-- <th>Position</th> -->
                                 <!-- <th>Office</th> -->
                                 <th>Amount</th>
@@ -54,21 +55,32 @@
                         
                         <tbody>
                             <tr>
-                                <td id="firstR"><%=data.crypto%></td>
+                                <td></td>
                                 <td id="firstR"><%=data.author.username %></td>
                                 <td id="firstR"><%=data.crypto%></td>
-                                <!-- <td>System Architect</td> -->
-                                <!-- <td>Edinburgh</td> -->
+                                <td><a href="/dashboard/adminOperation/<%= data._id %>"><%=data.operation%></a></td>
                                 <td><%=data.amount%></td>
                                 <td><%=data.created.toDateString()%></td>
-                                <td>Pending</td>
-                                <td><a class="btn btn-success btn-circle btn-sm">
-                                        <i class="fas fa-check"></i>
-                                    </a>&nbsp;&nbsp;
-                                    <a class="btn btn-danger btn-circle btn-sm">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
+                                <td><%=data.status%></td>
+                                
+
+
+                                <!-- <td>
+                                    <form action="" method="post">
+                                        <button id="btn-admin">
+                                            <a class="btn btn-success btn-circle btn-sm">
+                                                <i class="fas fa-check"></i>
+                                            </a>&nbsp;&nbsp;
+                                        </button>
+                                    </form>
+                                    <form action="" method="post">
+                                        <button id="btn-admin">
+                                            <a class="btn btn-danger btn-circle btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </button>
+                                    </form>
+                                </td> -->
                             </tr>
                     <%})%>
                     </table>

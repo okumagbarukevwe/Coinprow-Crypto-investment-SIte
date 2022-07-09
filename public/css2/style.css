@@ -16,3 +16,9 @@
   background: #3498db;
   color: #fff;
 }
+
+#btn-admin{
+  border: none;
+  background: none;
+  width: fit-content;
+}

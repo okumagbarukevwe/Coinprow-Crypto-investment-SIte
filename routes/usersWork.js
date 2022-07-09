@@ -37,6 +37,21 @@ router.get('/dashboard/adminOperation/:id', isLoggedIn, function(req, res){
     }
 });
 
+router.put('/dashboard/adminOperation/:id', isLoggedIn, function(req, res){
+    if(req.user.username === 'admin'){
+        addFund.findById(req.params.id, function(err, foundFund){
+            if(err){
+                res.render('adminDashboard')
+            }else {
+                res.send('hello');
+                // res.render('showFundAdmin', {fund: foundFund, title: 'showFund'})
+            }
+        })
+    } else {
+        res.render('dashboard', {title: 'Dashboard | '})
+    }
+})
+
 router.get('/dashboard/addfunds', isLoggedIn, function(req, res){
     res.render('addFunds', {title: 'Add funds | '})
 });
@@ -115,11 +130,12 @@ router.post('/dashboard/addfunds', isLoggedIn, function(req, res){
     }
     var operation = operationAdd
     var amount = req.body.amount
+    var status = 'pending'
     var author = {
         id: req.user._id,
         username: req.user.username
     }
-    var newFund = {crypto: crypto, operation: operationAdd, coinName: coinName, amount: amount, author: author}
+    var newFund = {crypto: crypto, operation: operationAdd, coinName: coinName, status: status ,amount: amount, author: author}
     addFund.create(newFund, function(err, newFund){
         if(err){
             console.log(err);
@@ -201,9 +217,23 @@ router.get('/dashboard/paymentdetails/:id/edit', isLoggedIn, function(req, res){
 
 //UPDATE USER PAYMENTS DETAILS
 router.put('/dashboard/paymentdetails/:id', isLoggedIn, function(req, res){
-
-    res.send('hello')
+    let data = {
+        usdtAdd : req.body.usdt,
+        busdAdd : req.body.busd,
+        usdcAdd : req.body.usdc
+    }
+    User.findByIdAndUpdate(req.params.id, data, function(err, updatedUser){
+        if(err){
+            res.send('error')
+        } else {
+            console.log(updatedUser)
+            res.redirect('/dashboard/pa/dashboard/adminOperation/61e53cb54f1f7d0ad79f6c71ymentdetails/' + req.params.id)
+        }
+    })
 });
+
+//ADD FUNDS TO WALLET
+
 
 
 function isLoggedIn(req, res, next){

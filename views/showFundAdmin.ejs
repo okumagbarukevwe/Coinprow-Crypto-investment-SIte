@@ -46,7 +46,7 @@ body {color : black;}
                       </div>
                     </div>
                     <form action="/dashboard/operation/<%=fund._id%>?_method=DELETE" method="POST"><center><button class="general-btn">Cancel</button></center></form>
-                    <a href="../../dashboard/addfunds/<%= fund.crypto %>"><center><button class="general-btn">Confirm</button></center></a>
+                    <form action="/dashboard/adminOperation/:id?_method=PUT"><center><button class="general-btn">Confirm</button></center></form>
                   </center>
             </div>
             <!-- /.container-fluid -->
